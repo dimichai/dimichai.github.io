@@ -5,273 +5,965 @@
   <title>Dimitris Michailidis</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <meta name="description" content="Postdoctoral Researcher at SIAS Group, University of Amsterdam. Research on Reinforcement Learning, Urban Planning, and Fairness in AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #1a1a2e;
+      --accent: #4f46e5;
+      --accent-light: #818cf8;
+      --accent-warm: #f97316;
+      --text: #374151;
+      --text-light: #6b7280;
+      --bg: #ffffff;
+      --bg-subtle: #f8fafc;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 40px rgba(79,70,229,0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Roboto', sans-serif;
-      line-height: 1.6;
-      color: #333;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 0% 0%, rgba(79,70,229,0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 100%, rgba(249,115,22,0.03) 0%, transparent 50%);
+      min-height: 100vh;
     }
 
-    .navbar {
-      background-color: #4a6fa5;
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1rem 0;
     }
 
-    .navbar-brand,
-    .nav-link {
-      color: #fff !important;
+    nav .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    h1,
-    h2,
-    h3,
-    h4 {
-      color: #4a6fa5;
-      margin-top: 1.5rem;
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
     }
 
-    .profile-img {
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-warm);
+    }
+
+    .mobile-toggle {
+      display: none;
+      position: absolute;
+      left: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--primary);
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 8rem 0 4rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      max-width: 250px;
+      object-fit: cover;
+      border: 4px solid var(--bg);
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.3s ease;
+    }
+
+    .hero-image img:hover {
+      transform: scale(1.02);
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      border-radius: 50%;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-content .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content .subtitle a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero-content .subtitle a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .social-links a:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      border-color: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79,70,229,0.3);
+    }
+
+    .social-links svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Highlight Banner */
+    .highlight-banner {
+      background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 50%, var(--accent-warm) 100%);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0 4rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      box-shadow: 0 8px 32px rgba(79,70,229,0.25);
+    }
+
+    .highlight-banner h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    }
+
+    .highlight-banner p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .highlight-banner a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--accent);
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .highlight-banner a:hover {
+      transform: translateX(4px);
+    }
+
+    /* Main Layout */
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 4rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 3px solid transparent;
+      border-image: linear-gradient(90deg, var(--accent), var(--accent-warm)) 1;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 2rem 0 1rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    /* Publications */
+    .publications {
+      counter-reset: pub-counter 11;
+    }
+
+    .publication {
+      position: relative;
+      padding: 1.25rem 1.25rem 1.25rem 3.5rem;
+      margin-bottom: 1rem;
+      background: var(--bg-subtle);
+      border-radius: 8px;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .publication:hover {
+      border-left-color: var(--accent-warm);
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .publication::before {
+      counter-increment: pub-counter -1;
+      content: counter(pub-counter);
+      position: absolute;
+      left: 1rem;
+      top: 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .publication .title {
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .publication .authors {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .publication .venue {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .publication .award {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color: #78350f;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
+    .publication .links {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .publication .links a {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.2rem 0.5rem;
+      background: rgba(74, 111, 165, 0.1);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .publication .links a:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+    }
+
+    /* Blog Posts */
+    .blog-list {
+      list-style: none;
+    }
+
+    .blog-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .blog-list li:last-child {
+      border-bottom: none;
+    }
+
+    .blog-list a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .blog-list a::before {
+      content: '→';
+      color: var(--accent-warm);
+      transition: transform 0.2s ease;
+    }
+
+    .blog-list a:hover {
+      color: var(--accent);
+    }
+
+    .blog-list a:hover::before {
+      transform: translateX(4px);
+    }
+
+    /* About */
+    .about p {
       margin-bottom: 1rem;
     }
 
-    .sidebar {
-      background-color: #f0f4f8;
-      padding: 2rem;
-      border-radius: 0.5rem;
+    .about strong {
+      color: var(--primary);
+    }
+
+    /* Teaching */
+    .student-list, .course-list, .review-list {
+      list-style: none;
+    }
+
+    .student-list li, .course-list li, .review-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .student-list li:last-child,
+    .course-list li:last-child,
+    .review-list li:last-child {
+      border-bottom: none;
+    }
+
+    .student-name {
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .thesis-title {
+      color: var(--text-light);
+      font-size: 0.9rem;
     }
 
     a {
-      color: #4a6fa5;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease;
     }
 
     a:hover {
-      color: #3a5683;
+      color: var(--accent-warm);
+      text-decoration: underline;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 5rem;
+      height: fit-content;
+    }
+
+    .sidebar-card {
+      background: var(--bg-subtle);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-card:hover {
+      border-color: rgba(79,70,229,0.1);
+      box-shadow: 0 4px 12px rgba(79,70,229,0.05);
+    }
+
+    .sidebar-card h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      margin: 0 0 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .contact-info p {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .contact-info .email {
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .sidebar-links {
+      list-style: none;
+    }
+
+    .sidebar-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .sidebar-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .sidebar-links svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-light);
+    }
+
+    .project-card {
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-warm);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(249,115,22,0.15);
+    }
+
+    .project-card a {
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .project-card p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 0.25rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--text-light);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero, section, .sidebar-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.2s; }
+    section:nth-child(4) { animation-delay: 0.3s; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .main-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+
+      .sidebar-card {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+        padding: 7rem 0 3rem;
+      }
+
+      .hero-image {
+        margin: 0 auto;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .highlight-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      nav ul li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      nav ul li:last-child {
+        border-bottom: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .publication {
+        padding-left: 1.25rem;
+      }
+
+      .publication::before {
+        display: none;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav>
     <div class="container">
-      <a class="navbar-brand" href="#">Dimitris Michailidis</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+      <button class="mobile-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>
-        </ul>
-      </div>
+      <ul>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-lg-8">
-        <section id="home">
-          <img src="profile.jpg" alt="Dimitris Michailidis" class="img-fluid profile-img">
-          <h1>Dimitris Michailidis</h1>
-          <p class="lead">Postdoctoral Researcher, SIAS Group, University of Amsterdam</p>
-        </section>
+  <div class="container">
+    <header class="hero" id="home">
+      <div class="hero-image">
+        <img src="profile.jpg" alt="Dimitris Michailidis">
+      </div>
+      <div class="hero-content">
+        <h1>Dimitris Michailidis</h1>
+        <p class="subtitle">Postdoctoral Researcher at the <a href="https://www.sias-uva.nl/" target="_blank">SIAS Group</a>, University of Amsterdam</p>
+        <div class="social-links">
+          <a href="https://scholar.google.com/citations?user=n2kZzKEAAAAJ&hl=en&oi=sra" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14Zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5 12 0Z"/></svg>
+            Scholar
+          </a>
+          <a href="https://www.github.com/dimichai/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18a4.65 4.65 0 0 1 1.24 3.22c0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 0Z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/dimichai/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://twitter.com/dimichai_" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Twitter
+          </a>
+        </div>
+      </div>
+    </header>
 
-        <section id="banner" class="bg-info text-white p-3 mb-4 rounded">
-          <h4>Into Reinforcement Learning for real-world problems?</h4>
-          <p>I’ve been building a MO-Gymnasium environment for tackling real-world transport planning. <br> Check it out
-            here: <a href="https://github.com/dimichai/mo-tndp" target="_blank"
-              class="text-white"><u>github.com/dimichai/mo-tndp</u></a></p>
-        </section>
+    <div class="highlight-banner">
+      <div>
+        <h3>Into Reinforcement Learning for real-world problems?</h3>
+        <p>Check out my MO-Gymnasium environment for tackling real-world transport planning.</p>
+      </div>
+      <a href="https://github.com/dimichai/mo-tndp" target="_blank">
+        View on GitHub
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
 
+    <div class="main-content">
+      <main>
         <section id="research">
           <h2>Research</h2>
-          <ol reversed>
-            <li>
-              <strong>Michailidis, D.</strong>, Röpke, W., Roijers, D., Ghebreab, S., Santos, F.P.,
-              "Scalable Multi-Objective Reinforcement Learning with Fairness Guarantees using Lorenz Dominance",
-              arXiv pre-print.
-              <a href="https://arxiv.org/abs/2411.18195">pdf</a>.
-            </li>
-            <li>
-              van Oorschot, L., <strong>Michailidis, D.</strong>, IJzerman, N., Jansen, S., Roijers, D.,
-              "Where (not) to Cross the Street", BNAIC/BeNeLearn (2024).
-              <a
-                href="https://bnaic2024.sites.uu.nl/wp-content/uploads/sites/986/2024/11/Where-Not-to-Cross-the-Street.pdf">pdf</a>.
-            </li>
-            <li>
-              <strong>Michailidis, D.</strong>, Khutsishvili, K., Konstantis, K., Tympas, A., Ibrahim, I.A., Ghebreab,
-              S,
-              "Enabling Inclusive Urban Transport Planning Through Civic Artificial Intelligence",
-              Strengthening European Mobility Policy. Palgrave Macmillan, Cham (2024).
-              <a
-                href="https://library.oapen.org/bitstream/handle/20.500.12657/93860/978-3-031-67936-0.pdf?sequence=1#page=130">pdf</a>.
-            </li>
-            <li>
-              Tasnim, M., <strong>Michailidis, D.</strong>, Ghebreab, S., Santos, F.P., Acar, E.,
-              "Mitigating School Segregation through Targeted School Relocation",
-              In Proceedings of the 2023 International Conference on Autonomous Agents and Multiagent Systems
-              (Workshop on Citizen-Centric Multiagent Systems, Autonomous Agents and Multi-Agent Systems (2024).
-              <a
-                href="https://eprints.soton.ac.uk/489958/1/Proceedings_of_the_Second_International_Workshop_on_Citizen-Centric_Multiagent_Systems_2024_C-MAS_2024_.pdf#page=52">pdf</a>
-              <a href="https://github.com/sias-uva/transport-network-school-choice">code</a>.
-            </li>
-            <li>
-              <strong>Michailidis, D.</strong>,
-              "Fair Transport Network Design using Multi-Agent Reinforcement Learning",
-              Doctoral Consortium — 2023 International Conference on Autonomous Agents and Multiagent Systems.
-              <a href="https://www.ifaamas.org/Proceedings/aamas2023/pdfs/p2993.pdf">pdf</a>.
-            </li>
-            <li>
-              <strong>Michailidis, D.</strong>, Tasnim, M., Ghebreab, S., Santos, F.P.,
-              "Tackling school segregation with transportation network interventions: an agent-based modelling
-              approach",
-              Autonomous Agents Multi-Agent Systems 38, 22 (2024).
-              <strong>[Most Visionary Paper Award, CMAS-AAMAS 2023]</strong>
-              <a href="https://link.springer.com/article/10.1007/s10458-024-09652-x">pdf</a>.
-            </li>
-            <li>
-              Fiorista, R., <strong>Michailidis, D.</strong>, Santos, F.P.,
-              "Equitable Public Transit Network Reduction",
-              Transportation Research Board Annual Meeting (2023).
-              <strong>[1st place, Network Modeling Student Problem Solving Competition, 2022 Transportation Research
-                Board (USA National Academy of Sciences, Engineering, and Medicine)]</strong>
-              <a
-                href="https://github.com/RicoFio/eptnr-trb-aep40-3-competition/blob/main/report/Research%20Brief%20-%20TRB%20EPTNR.pdf">research
-                brief</a>.
-            </li>
-            <li>
-              <strong>Michailidis, D.</strong>, Röpke, W., Ghebreab, S., Roijers, D., Santos, F.P.,
-              "Fairness in Transport Network Design-A Multi-Objective Reinforcement Learning Approach",
-              Adaptive and Learning Agents Workshop, 2023 International Conference on Autonomous Agents and Multiagent
-              Systems (2023).
-              <a href="https://alaworkshop2023.github.io/papers/ALA2023_paper_51.pdf">pdf</a>.
-            </li>
-            <li>
-              <strong>Michailidis, D.</strong>, Ghebreab, S. and Santos, F.P.,
-              "Balancing Fairness and Efficiency in Transport Network Design through Reinforcement Learning",
-              In Proceedings of the 2023 International Conference on Autonomous Agents and Multiagent Systems (pp.
-              2532-2534).
-              <a href="https://www.southampton.ac.uk/~eg/AAMAS2023/pdfs/p2532.pdf">pdf</a>,
-              <a href="https://github.com/dimichai/fair-network-expansion/">code</a>.
-            </li>
-            <li>
-              <strong>Michailidis D.</strong>, Stylianou N., Vlahavas I.,
-              "Real Time Location Based Sentiment Analysis on Twitter - The AirSent System",
-              10th Hellenic Conference on Artificial Intelligence, July 2018.
-              <a href="https://dl.acm.org/doi/10.1145/3200947.3201052">pdf</a>.
-            </li>
-          </ol>
+          <div class="publications">
+            <div class="publication">
+              <div class="title">Scalable Multi-Objective Reinforcement Learning with Fairness Guarantees using Lorenz Dominance</div>
+              <div class="authors"><strong>Michailidis, D.</strong>, Röpke, W., Roijers, D., Ghebreab, S., Santos, F.P.</div>
+              <div class="venue">arXiv pre-print</div>
+              <div class="links">
+                <a href="https://arxiv.org/abs/2411.18195" target="_blank">pdf</a>
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="title">Where (not) to Cross the Street</div>
+              <div class="authors">van Oorschot, L., <strong>Michailidis, D.</strong>, IJzerman, N., Jansen, S., Roijers, D.</div>
+              <div class="venue">BNAIC/BeNeLearn (2024)</div>
+              <div class="links">
+                <a href="https://bnaic2024.sites.uu.nl/wp-content/uploads/sites/986/2024/11/Where-Not-to-Cross-the-Street.pdf" target="_blank">pdf</a>
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="title">Enabling Inclusive Urban Transport Planning Through Civic Artificial Intelligence</div>
+              <div class="authors"><strong>Michailidis, D.</strong>, Khutsishvili, K., Konstantis, K., Tympas, A., Ibrahim, I.A., Ghebreab, S.</div>
+              <div class="venue">Strengthening European Mobility Policy. Palgrave Macmillan, Cham (2024)</div>
+              <div class="links">
+                <a href="https://library.oapen.org/bitstream/handle/20.500.12657/93860/978-3-031-67936-0.pdf?sequence=1#page=130" target="_blank">pdf</a>
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="title">Mitigating School Segregation through Targeted School Relocation</div>
+              <div class="authors">Tasnim, M., <strong>Michailidis, D.</strong>, Ghebreab, S., Santos, F.P., Acar, E.</div>
+              <div class="venue">CMAS Workshop, AAMAS (2024)</div>
+              <div class="links">
+                <a href="https://eprints.soton.ac.uk/489958/1/Proceedings_of_the_Second_International_Workshop_on_Citizen-Centric_Multiagent_Systems_2024_C-MAS_2024_.pdf#page=52" target="_blank">pdf</a>
+                <a href="https://github.com/sias-uva/transport-network-school-choice" target="_blank">code</a>
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="title">Fair Transport Network Design using Multi-Agent Reinforcement Learning</div>
+              <div class="authors"><strong>Michailidis, D.</strong></div>
+              <div class="venue">Doctoral Consortium — AAMAS 2023</div>
+              <div class="links">
+                <a href="https://www.ifaamas.org/Proceedings/aamas2023/pdfs/p2993.pdf" target="_blank">pdf</a>
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="title">Tackling school segregation with transportation network interventions: an agent-based modelling approach</div>
+              <div class="authors"><strong>Michailidis, D.</strong>, Tasnim, M., Ghebreab, S., Santos, F.P.</div>
+              <div class="venue">Autonomous Agents Multi-Agent Systems 38, 22 (2024)</div>
+              <span class="award">Most Visionary Paper Award, CMAS-AAMAS 2023</span>
+              <div class="links">
+                <a href="https://link.springer.com/article/10.1007/s10458-024-09652-x" target="_blank">pdf</a>
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="title">Equitable Public Transit Network Reduction</div>
+              <div class="authors">Fiorista, R., <strong>Michailidis, D.</strong>, Santos, F.P.</div>
+              <div class="venue">Transportation Research Board Annual Meeting (2023)</div>
+              <span class="award">1st Place, Network Modeling Competition, TRB 2022</span>
+              <div class="links">
+                <a href="https://github.com/RicoFio/eptnr-trb-aep40-3-competition/blob/main/report/Research%20Brief%20-%20TRB%20EPTNR.pdf" target="_blank">brief</a>
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="title">Fairness in Transport Network Design—A Multi-Objective Reinforcement Learning Approach</div>
+              <div class="authors"><strong>Michailidis, D.</strong>, Röpke, W., Ghebreab, S., Roijers, D., Santos, F.P.</div>
+              <div class="venue">Adaptive and Learning Agents Workshop, AAMAS (2023)</div>
+              <div class="links">
+                <a href="https://alaworkshop2023.github.io/papers/ALA2023_paper_51.pdf" target="_blank">pdf</a>
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="title">Balancing Fairness and Efficiency in Transport Network Design through Reinforcement Learning</div>
+              <div class="authors"><strong>Michailidis, D.</strong>, Ghebreab, S., Santos, F.P.</div>
+              <div class="venue">AAMAS 2023</div>
+              <div class="links">
+                <a href="https://www.southampton.ac.uk/~eg/AAMAS2023/pdfs/p2532.pdf" target="_blank">pdf</a>
+                <a href="https://github.com/dimichai/fair-network-expansion/" target="_blank">code</a>
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="title">Real Time Location Based Sentiment Analysis on Twitter - The AirSent System</div>
+              <div class="authors"><strong>Michailidis D.</strong>, Stylianou N., Vlahavas I.</div>
+              <div class="venue">10th Hellenic Conference on Artificial Intelligence (2018)</div>
+              <div class="links">
+                <a href="https://dl.acm.org/doi/10.1145/3200947.3201052" target="_blank">pdf</a>
+              </div>
+            </div>
+          </div>
 
           <h3>Blog Posts</h3>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a
-                href="https://www.amsterdamintelligence.com/posts/designing-fair-public-transportation-using-reinforcement-learning"
-                target="_blank">Designing Fair Public Transportation using Reinforcement Learning</a></li>
-            <li class="mb-2"><a href="https://www.civic-ai.nl/post/aies-2021-our-post-event-review" target="_blank">AIES
-                2021: Our Post-Event Review</a></li>
-            <li class="mb-2"><a href="https://www.civic-ai.nl/post/how-can-ai-help-tackle-mobility-poverty"
-                target="_blank">How can AI Help Tackle Mobility Poverty?</a></li>
+          <ul class="blog-list">
+            <li><a href="https://www.amsterdamintelligence.com/posts/designing-fair-public-transportation-using-reinforcement-learning" target="_blank">Designing Fair Public Transportation using Reinforcement Learning</a></li>
+            <li><a href="https://www.civic-ai.nl/post/aies-2021-our-post-event-review" target="_blank">AIES 2021: Our Post-Event Review</a></li>
+            <li><a href="https://www.civic-ai.nl/post/how-can-ai-help-tackle-mobility-poverty" target="_blank">How can AI Help Tackle Mobility Poverty?</a></li>
           </ul>
         </section>
 
-        <section id="about">
-          <h2>About me</h2>
-          <p>I am a Postdoctoral Researcher at the <a href="https://www.sias-uva.nl/" target="_blank">SIAS Group</a> of the
-            University of Amsterdam.</p>
-          <p>I was previously a PhD Candidate at the <a href="https://www.civic-ai.nl/" target="_blank">Civic AI Lab</a>, and will defend my thesis on February, 2026.</p>
-          <p>In my research, I use <strong>Machine Learning to design inclusive, accessible and sustainable
-              cities</strong>.</p>
-          <p>My current focus is on using <strong>Reinforcement Learning to explore the trade-off between utility and
-              equity/fairness</strong> when designing public transport networks.</p>
-          <p>In the near future, I would like to investigate <strong>how urban populations would adapt</strong> to such
-            changes in a city's public transport networks.</p>
-          <p>My goal is to create a multi-agent framework that helps to <strong>envision alternative urban
-              designs</strong> and their evolution in time.</p>
-          <p>Sounds interesting? Then please, get in touch!</p>
-          <!-- <img src="poster.png" alt="Research Poster" class="img-fluid mt-3 mb-3"> -->
+        <section id="about" class="about">
+          <h2>About Me</h2>
+          <p>I am a Postdoctoral Researcher at the <a href="https://www.sias-uva.nl/" target="_blank">SIAS Group</a> of the University of Amsterdam.</p>
+          <p>I was previously a PhD Candidate at the <a href="https://www.civic-ai.nl/" target="_blank">Civic AI Lab</a>, and will defend my thesis in February, 2026.</p>
+          <p>In my research, I use <strong>Machine Learning to design inclusive, accessible and sustainable cities</strong>.</p>
+          <p>My current focus is on using <strong>Reinforcement Learning to explore the trade-off between utility and equity/fairness</strong> when designing public transport networks.</p>
+          <p>In the near future, I would like to investigate <strong>how urban populations would adapt</strong> to such changes in a city's public transport networks.</p>
+          <p>My goal is to create a multi-agent framework that helps to <strong>envision alternative urban designs</strong> and their evolution in time.</p>
+          <p>Sounds interesting? Then please, <a href="#contact">get in touch</a>!</p>
         </section>
 
         <section id="teaching">
           <h2>Teaching & Supervision</h2>
-          <h4>Master's Students Supervision</h4>
-          <ul>
-            <li>Riccardo Fiorista <a href="https://at.linkedin.com/in/riccardo-fiorista">(Linkedin)</a> - <a href="https://scripties.uba.uva.nl/search?id=record_27594"
-                target="_blank">Equitable Public Transport Network Reduction: A Reinforcement Learning Approach</a> -
-              MSc Thesis, Spring 2022</li>
-            <li>Paul Stepanov <a href="https://nl.linkedin.com/in/paul-stepanov">(Linkedin)</a> - <a href="https://scripties.uba.uva.nl/search?id=record_28831" target="_blank">Fairness
-                in Facility Location through Clustering</a> - MSc Thesis, Spring 2022</li>
-            <li>Lodewijk van Keizerswaard <a href="https://www.linkedin.com/in/lodewijkvankeizerswaard/">(Linkedin)</a> - Rewarding rationality to improve reinforcement learning models on the metro
-              network design problem - MSc AI Project, Summer 2022</li>
-            <li>Laura Brafine <a href="https://www.linkedin.com/in/laurabrafine/" target="_blank">(LinkedIn)</a> - <a
-                href="https://scripties.uba.uva.nl/search?id=record_53645" target="_blank">Measuring the Impact of
-                Transportation Systems on Urban Segregation Through Random Walks</a> - MSc Thesis Project, Spring 2023
-            </li>
-            <li>Leah van Oorschot <a href="https://nl.linkedin.com/in/leahvanoorschot">(Linkedin)</a> - <a href="https://scripties.uba.uva.nl/search?id=record_55127"
-              target="_blank">Where (not) to Cross the Street: Automatically Detecting Crosswalks for Accessible Navigation</a> - MSc Thesis, Spring 2024</li>
-          </ul>
-          <h4>Courses Taught</h4>
-          <ul>
-            <li><a href="https://coursecatalogue.uva.nl/xmlpages/page/2022-2023-en/search-course/course/99120"
-                target="_blank">Reinforcement Learning</a> - Artificial Intelligence MSc (2023)</li>
-            <li><a href="https://coursecatalogue.uva.nl/xmlpages/page/2022-2023-en/search-course/course/99134"
-                target="_blank">Fundamentals of Data Science</a> - Information Studies MSc - Data Science Track (2021,
-              2022)</li>
-            <li><a href="https://coursecatalogue.uva.nl/xmlpages/page/2022-2023-en/search-course/course/99121"
-                target="_blank">Fairness Accountability Confidentiality and Transparency in AI</a> - Artificial
-              Intelligence MSc (2022, 2023)</li>
-          </ul>
-          <h3>(Sub-)Reviewing</h3>
-          <ul>
-            <li><a
-                href="https://www.sciencedirect.com/journal/transportation-research-part-c-emerging-technologies">Transportation
-                Research Part C (2024)</a></li>
-            <li>NetSciX (<a href="https://netscix2024.netscisociety.org" target="_blank">2024</a>)</li>
-            <li>AAAI (<a href="https://aaai.org/aaai-conference/" target="_blank">2024</a>)</li>
-            <li>ECAI (<a href="https://ecai2023.eu" target="_blank">2023</a>)</li>
-            <li>Multi-Objective Decision Making Workshop (<a href="https://modem2023.vub.ac.be">ECAI 2023</a>, <a
-                href="https://modem2024.vub.ac.be/">ECAI 2024)</a></li>
-            <li><a
-                href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwino4P53ayBAxVTxgIHHTq3DyUQFnoECB0QAQ&url=https%3A%2F%2Fwww.springer.com%2Fjournal%2F12469&usg=AOvVaw1ws5jVH0CqIsTSu_uTA6v1&opi=89978449"
-                target="_blank">Public Transport Journal (2022)</a></li>
-        </section>
-      </div>
 
-      <div class="col-lg-4">
-        <div class="sidebar">
-          <h3>Contact Information</h3>
-          <p><strong>Email:</strong> d.michailidis [at] uva.nl</p>
-          <p>
-            Civic AI Lab<br>
-            University of Amsterdam<br>
-            Science Park, Amsterdam, Netherlands
-          </p>
-          <h3>Links</h3>
-          <ul class="list-unstyled">
-            <li><a href="https://scholar.google.com/citations?user=n2kZzKEAAAAJ&hl=en&oi=sra" target="_blank">Google
-                Scholar</a></li>
-            <li><a href="https://twitter.com/dimichai_" target="_blank">Twitter</a></li>
-            <li><a href="https://www.linkedin.com/in/dimichai/" target="_blank">LinkedIn</a></li>
-            <li><a href="https://www.github.com/dimichai/" target="_blank">GitHub</a></li>
+          <h4>Master's Students Supervision</h4>
+          <ul class="student-list">
+            <li>
+              <span class="student-name">Riccardo Fiorista</span> <a href="https://at.linkedin.com/in/riccardo-fiorista" target="_blank">(LinkedIn)</a><br>
+              <span class="thesis-title"><a href="https://scripties.uba.uva.nl/search?id=record_27594" target="_blank">Equitable Public Transport Network Reduction: A Reinforcement Learning Approach</a> — MSc Thesis, Spring 2022</span>
+            </li>
+            <li>
+              <span class="student-name">Paul Stepanov</span> <a href="https://nl.linkedin.com/in/paul-stepanov" target="_blank">(LinkedIn)</a><br>
+              <span class="thesis-title"><a href="https://scripties.uba.uva.nl/search?id=record_28831" target="_blank">Fairness in Facility Location through Clustering</a> — MSc Thesis, Spring 2022</span>
+            </li>
+            <li>
+              <span class="student-name">Lodewijk van Keizerswaard</span> <a href="https://www.linkedin.com/in/lodewijkvankeizerswaard/" target="_blank">(LinkedIn)</a><br>
+              <span class="thesis-title">Rewarding rationality to improve reinforcement learning models on the metro network design problem — MSc AI Project, Summer 2022</span>
+            </li>
+            <li>
+              <span class="student-name">Laura Brafine</span> <a href="https://www.linkedin.com/in/laurabrafine/" target="_blank">(LinkedIn)</a><br>
+              <span class="thesis-title"><a href="https://scripties.uba.uva.nl/search?id=record_53645" target="_blank">Measuring the Impact of Transportation Systems on Urban Segregation Through Random Walks</a> — MSc Thesis, Spring 2023</span>
+            </li>
+            <li>
+              <span class="student-name">Leah van Oorschot</span> <a href="https://nl.linkedin.com/in/leahvanoorschot" target="_blank">(LinkedIn)</a><br>
+              <span class="thesis-title"><a href="https://scripties.uba.uva.nl/search?id=record_55127" target="_blank">Where (not) to Cross the Street: Automatically Detecting Crosswalks for Accessible Navigation</a> — MSc Thesis, Spring 2024</span>
+            </li>
           </ul>
-          <h3>Personal Projects</h3>
-          <p><a href="https://greeceinfigures.com/" target="_blank">Greece in Figures</a> - Explaining complex
-            socioeconomic phenomena for the Greek audience.</p>
-          <p><a href="http://100europeans.org" target="_blank">100 Europeans</a> - Raising awareness around big
-            challenges through interactive and visual stories.</p>
+
+          <h4>Courses Taught</h4>
+          <ul class="course-list">
+            <li><a href="https://coursecatalogue.uva.nl/xmlpages/page/2022-2023-en/search-course/course/99120" target="_blank">Reinforcement Learning</a> — Artificial Intelligence MSc (2023)</li>
+            <li><a href="https://coursecatalogue.uva.nl/xmlpages/page/2022-2023-en/search-course/course/99134" target="_blank">Fundamentals of Data Science</a> — Information Studies MSc, Data Science Track (2021, 2022)</li>
+            <li><a href="https://coursecatalogue.uva.nl/xmlpages/page/2022-2023-en/search-course/course/99121" target="_blank">Fairness Accountability Confidentiality and Transparency in AI</a> — Artificial Intelligence MSc (2022, 2023)</li>
+          </ul>
+
+          <h4>(Sub-)Reviewing</h4>
+          <ul class="review-list">
+            <li><a href="https://www.sciencedirect.com/journal/transportation-research-part-c-emerging-technologies" target="_blank">Transportation Research Part C</a> (2024)</li>
+            <li><a href="https://netscix2024.netscisociety.org" target="_blank">NetSciX</a> (2024)</li>
+            <li><a href="https://aaai.org/aaai-conference/" target="_blank">AAAI</a> (2024)</li>
+            <li><a href="https://ecai2023.eu" target="_blank">ECAI</a> (2023)</li>
+            <li>Multi-Objective Decision Making Workshop (<a href="https://modem2023.vub.ac.be" target="_blank">ECAI 2023</a>, <a href="https://modem2024.vub.ac.be/" target="_blank">ECAI 2024</a>)</li>
+            <li><a href="https://www.springer.com/journal/12469" target="_blank">Public Transport Journal</a> (2022)</li>
+          </ul>
+        </section>
+      </main>
+
+      <aside class="sidebar" id="contact">
+        <div class="sidebar-card">
+          <h3>Contact</h3>
+          <div class="contact-info">
+            <p class="email">d.michailidis [at] uva.nl</p>
+            <p>
+              Civic AI Lab<br>
+              University of Amsterdam<br>
+              Science Park, Amsterdam<br>
+              Netherlands
+            </p>
+          </div>
         </div>
-      </div>
+
+        <div class="sidebar-card">
+          <h3>Links</h3>
+          <ul class="sidebar-links">
+            <li>
+              <a href="https://scholar.google.com/citations?user=n2kZzKEAAAAJ&hl=en&oi=sra" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14Zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5 12 0Z"/></svg>
+                Google Scholar
+              </a>
+            </li>
+            <li>
+              <a href="https://www.github.com/dimichai/" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18a4.65 4.65 0 0 1 1.24 3.22c0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 0Z"/></svg>
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/dimichai/" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/dimichai_" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Twitter
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Personal Projects</h3>
+          <div class="project-card">
+            <a href="https://greeceinfigures.com/" target="_blank">Greece in Figures</a>
+            <p>Explaining complex socioeconomic phenomena for the Greek audience.</p>
+          </div>
+          <div class="project-card">
+            <a href="http://100europeans.org" target="_blank">100 Europeans</a>
+            <p>Raising awareness around big challenges through interactive and visual stories.</p>
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
 
-  <footer class="bg-light text-center text-muted py-3 mt-5">
-    <p>&copy; 2023 Dimitris Michailidis | <a href="https://github.com/mavroudisv/plain-academic"
-        class="text-muted">Plain Academic</a></p>
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Dimitris Michailidis</p>
+    </div>
   </footer>
 
 </body>
